@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+:root {
+  --green-900: #1C2E14;
+  --green-700: #3D7A2A;
+  --green-600: #5A8A3A;
+  --green-100: #EAF4E2;
+  --green-50:  #F1F7EB;
+  --yellow:    #F5C518;
+  --yellow-soft: #FCEDA8;
+  --blue:      #4AABCC;
+  --blue-soft: #DDF0F6;
+  --orange:    #E87A30;
+  --orange-soft: #FDE5D2;
+  --coral:     #D94F6A;
+  --coral-soft: #FBE0E5;
+  --bg:        #F7F9F5;
+  --card:      #FFFFFF;
+  --border:    #E6ECDF;
+  --text:      #1C2E14;
+  --muted:     #6B7A60;
+  --shadow:    0 2px 12px rgba(28, 46, 20, 0.07);
+  --shadow-lg: 0 8px 28px rgba(28, 46, 20, 0.10);
+}
+
+@theme inline {
+  --color-green-900: var(--green-900);
+  --color-green-700: var(--green-700);
+  --color-green-600: var(--green-600);
+  --color-green-100: var(--green-100);
+  --color-green-50:  var(--green-50);
+  --color-yellow:    var(--yellow);
+  --color-yellow-soft: var(--yellow-soft);
+  --color-blue-brand: var(--blue);
+  --color-blue-brand-soft: var(--blue-soft);
+  --color-orange-brand: var(--orange);
+  --color-orange-brand-soft: var(--orange-soft);
+  --color-coral:     var(--coral);
+  --color-coral-soft: var(--coral-soft);
+  --color-bg:        var(--bg);
+  --color-card:      var(--card);
+  --color-border:    var(--border);
+  --color-text:      var(--text);
+  --color-muted:     var(--muted);
+  --font-sans: var(--font-nunito), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), monospace;
+  --shadow-card: var(--shadow);
+  --shadow-lg:   var(--shadow-lg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--yellow);
+  color: var(--green-900);
+}
