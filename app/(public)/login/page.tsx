@@ -1,4 +1,11 @@
-export default function LoginPage() {
+import { login } from '@/app/actions/auth'
+
+interface Props {
+  searchParams: Promise<{ error?: string }>
+}
+
+export default async function LoginPage({ searchParams }: Props) {
+  const { error } = await searchParams
   return (
     <div className="min-h-screen flex items-center justify-center bg-bg">
       <div className="w-full max-w-sm bg-card rounded-2xl shadow-card p-8 flex flex-col gap-6">
@@ -15,13 +22,20 @@ export default function LoginPage() {
 
         <h1 className="text-xl font-extrabold text-green-900 text-center">Entrar</h1>
 
-        <form className="flex flex-col gap-4">
+        {error && (
+          <p className="text-sm font-semibold text-red-600 bg-red-50 border border-red-100 rounded-xl px-4 py-3 text-center">
+            E-mail ou senha incorretos.
+          </p>
+        )}
+
+        <form className="flex flex-col gap-4" action={login}>
           <div className="flex flex-col gap-1.5">
             <label className="text-sm font-semibold text-green-900" htmlFor="email">
               E-mail
             </label>
             <input
               id="email"
+              name="email"
               type="email"
               autoComplete="email"
               required
@@ -36,6 +50,7 @@ export default function LoginPage() {
             </label>
             <input
               id="password"
+              name="password"
               type="password"
               autoComplete="current-password"
               required
