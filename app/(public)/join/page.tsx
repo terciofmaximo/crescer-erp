@@ -1,6 +1,11 @@
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { isExpired } from '@/lib/utils'
+import type { Database } from '@/lib/types'
+
+type InvitationRow = Database['public']['Tables']['invitations']['Row'] & {
+  schools: { name: string } | null
+}
 
 interface Props {
   searchParams: Promise<{ token?: string }>
@@ -16,7 +21,7 @@ export default async function JoinPage({ searchParams }: Props) {
     .from('invitations')
     .select('*, schools(name)')
     .eq('token', token)
-    .single()
+    .single() as { data: InvitationRow | null; error: unknown }
 
   if (!invitation) notFound()
   if (invitation.accepted_at) {

@@ -1,11 +1,14 @@
 import { createClient } from '@/lib/supabase/server'
+import type { Database } from '@/lib/types'
+
+type SchoolRow = Pick<Database['public']['Tables']['schools']['Row'], 'id' | 'name' | 'slug' | 'created_at'>
 
 export default async function AdminSchoolsPage() {
   const supabase = await createClient()
   const { data: schools } = await supabase
     .from('schools')
     .select('id, name, slug, created_at')
-    .order('created_at', { ascending: false })
+    .order('created_at', { ascending: false }) as { data: SchoolRow[] | null; error: unknown }
 
   return (
     <div className="flex flex-col gap-6 max-w-3xl">
